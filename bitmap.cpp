@@ -1,0 +1,62 @@
+#include <GL/glut.h>
+#include <stdlib.h>
+
+GLubyte f[] = {
+	0xff,0xff,
+	0xff,0xff,
+	0xff,0xff,
+	0xff,0xff,
+	
+	0x00,0x1f,
+	0x00,0x1f,
+	0x00,0x1f,
+	0x00,0x1f,
+	0x00,0x1f,
+	0x00,0x1f,
+	
+	0xff,0xff,
+	0xff,0xff,
+	0xff,0xff,
+	0xff,0xff,
+	
+	0xc0,0x00,
+	0xc0,0x00,
+	0xc0,0x00,
+	0xc0,0x00,
+	0xc0,0x00,
+	0xc0,0x00,
+	
+	0xff,0xff,
+	0xff,0xff,
+	0xff,0xff,
+	0xff,0xff,
+};
+
+void init(void)
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(1.0, 1.0, 1.0, 0.0f);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, 0, 0, 0, -1.0, 1.0);
+}
+
+void display(void)
+{
+	glColor3f (1.0, 1.0, 1.0);
+	glBitmap (16,16,0,0,10,0, f);
+	glFlush();
+}
+
+int main(int argc, char** argv)
+{
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize(100, 100);
+	glutInitWindowPosition(100, 100);
+	glutCreateWindow(argv[0]);
+	init();
+	glutDisplayFunc(display);
+	glutMainLoop();
+	return 0;
+}
